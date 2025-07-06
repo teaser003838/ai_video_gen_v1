@@ -55,14 +55,26 @@ try:
     print("✅ GPUtil imported successfully")
 except ImportError:
     GPUTIL_AVAILABLE = False
-    print("⚠️ GPUtil not available, using alternative GPU detection")\n",
-    "from pathlib import Path\n",
-    "import time\n",
-    "from IPython.display import display, HTML, clear_output\n",
-    "import ipywidgets as widgets\n",
-    "from tqdm.notebook import tqdm\n",
-    "import warnings\n",
-    "warnings.filterwarnings('ignore')\n",
+    print("⚠️ GPUtil not available, using alternative GPU detection")
+    
+from pathlib import Path
+import time
+from IPython.display import display, HTML, clear_output
+try:
+    import ipywidgets as widgets
+    print("✅ ipywidgets imported successfully")
+except ImportError:
+    print("⚠️ ipywidgets not available, some UI features may be limited")
+    
+try:
+    from tqdm.notebook import tqdm
+    print("✅ tqdm imported successfully")
+except ImportError:
+    from tqdm import tqdm
+    print("⚠️ Using console tqdm instead of notebook version")
+    
+import warnings
+warnings.filterwarnings('ignore')
     "\n",
     "class EnvironmentDetector:\n",
     "    def __init__(self):\n",
